@@ -1,2 +1,2 @@
-# beural_network
+# neural_network
 神经网络
