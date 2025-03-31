@@ -1,0 +1,7 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.7  # 使用最新版本
+    hooks:
+      - id: ruff-format       # 运行 Ruff 格式化
+      - id: ruff             # 运行 Ruff 检查并自动修复
+        args: [--fix]

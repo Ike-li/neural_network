@@ -12,7 +12,15 @@ python = "^3.9"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
+pre-commit = "^4.2.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.format]
+quote-style = "double"
