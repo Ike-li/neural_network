@@ -1,7 +1,20 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.7  # 使用最新版本
+    rev: v0.11.2  # 使用最新版本
     hooks:
       - id: ruff-format       # 运行 Ruff 格式化
       - id: ruff             # 运行 Ruff 检查并自动修复
         args: [--fix]
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.13.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+  - repo: https://github.com/psf/black
+    rev: 24.2.0
+    hooks:
+      - id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
