@@ -10,11 +10,21 @@ repos:
     hooks:
       - id: commitizen
         stages: [commit-msg]
-  - repo: https://github.com/psf/black
-    rev: 24.2.0
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
     hooks:
-      - id: black
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
+      - id: check-added-large-files
+      - id: check-ast
+      - id: check-json
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: trailing-whitespace
+  - repo: local
     hooks:
-      - id: isort
+      - id: coverage
+        name: coverage
+        entry: bash -c 'python -m coverage run -m pytest && python -m coverage report --fail-under=100'
+        language: system
+        types: [python]
+        pass_filenames: false
+        always_run: true
