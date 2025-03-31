@@ -1,30 +1,38 @@
 repos:
+  # Ruff 代码检查和格式化
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.2  # 使用最新版本
     hooks:
-      - id: ruff-format       # 运行 Ruff 格式化
-      - id: ruff             # 运行 Ruff 检查并自动修复
-        args: [--fix]
+      - id: ruff-format       # 运行 Ruff 格式化，自动调整代码格式
+      - id: ruff             # 运行 Ruff 检查并自动修复代码问题
+        args: [--fix]        # 自动修复可以修复的问题
+
+  # Commitizen 提交信息规范
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v3.13.0
     hooks:
       - id: commitizen
-        stages: [commit-msg]
+        stages: [commit-msg]  # 在提交信息阶段检查，确保提交信息符合规范
+                              # 例如：feat: 添加新功能、fix: 修复bug等
+
+  # 基本代码检查
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
-      - id: check-added-large-files
-      - id: check-ast
-      - id: check-json
-      - id: check-merge-conflict
-      - id: detect-private-key
-      - id: trailing-whitespace
+      - id: check-added-large-files  # 检查是否添加了大文件
+      - id: check-ast               # 检查 Python AST 语法
+      - id: check-json             # 检查 JSON 文件格式
+      - id: check-merge-conflict   # 检查是否有合并冲突
+      - id: detect-private-key     # 检查是否包含私钥
+      - id: trailing-whitespace    # 检查行尾空格
+
+  # 代码覆盖率检查
   - repo: local
     hooks:
       - id: coverage
         name: coverage
         entry: bash -c 'python -m coverage run -m pytest && python -m coverage report --fail-under=100'
         language: system
-        types: [python]
-        pass_filenames: false
-        always_run: true
+        types: [python]           # 只检查 Python 文件
+        pass_filenames: false     # 不传递文件名给命令
+        always_run: true          # 每次提交都运行，不管文件是否改变
