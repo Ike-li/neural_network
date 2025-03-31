@@ -26,12 +26,13 @@ jobs:
     - name: Install dependencies
       run: |
         ls -al
+        cd src
+        python -m pip install --upgrade pip
         pip install poetry
         poetry config virtualenvs.create false
         poetry install || poetry install || poetry install
     - name: Test with pytest
       run: |
         ls -al
-        cd src
         coverage run --source=. -m pytest
         coverage report -m --fail-under 100
