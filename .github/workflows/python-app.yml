@@ -25,7 +25,8 @@ jobs:
         python-version: "3.9"
     - name: Install dependencies
       run: |
-        pls -al
+        ls -al
+        python pip install poetry
         poetry config virtualenvs.create false
         poetry install || poetry install || poetry install
     - name: Test with pytest
