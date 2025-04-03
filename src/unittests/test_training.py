@@ -1,10 +1,10 @@
 import numpy as np
 from unittest.mock import patch
 
-from src.training import Training
 from src.normalize import FeatureNormalizer
 from src.polynomials import Polynomials
 from src.sinusoids import Sinusoids
+from src.training import Training
 
 
 def test_training_exists():

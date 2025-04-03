@@ -1,0 +1,2 @@
+src/data/mnist-demo.csv filter=lfs diff=lfs merge=lfs -text
+src/data/fashion-mnist-demo.csv filter=lfs diff=lfs merge=lfs -text
