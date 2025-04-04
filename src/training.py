@@ -9,7 +9,7 @@ class Training:
     @staticmethod
     def prepare(data, polynomial_degree=0, sinusoid_degree=0, normalize_data=True):
         """
-        准备数据集用于训练
+        准备数据集用于训练.
 
         参数:
         data - 输入特征数据，形状为(样本数, 特征数)

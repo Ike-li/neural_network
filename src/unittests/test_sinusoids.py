@@ -9,7 +9,9 @@ def test_sinusoids():
 
 
 def test_sinusoids_generation():
-    """测试正弦特征生成"""
+    """
+    测试正弦特征生成.
+    """
     dataset = np.array([[0], [np.pi / 2], [np.pi]])
     sinusoid_degree = 3
     generated_sinusoids = Sinusoids().generate(dataset, sinusoid_degree)
@@ -30,7 +32,9 @@ def test_sinusoids_generation():
 
 
 def test_sinusoids_with_empty_array():
-    """测试空数组输入"""
+    """
+    测试空数组输入.
+    """
     dataset = np.array([[]])  # 改为二维空数组
     sinusoid_degree = 2
 
@@ -40,7 +44,9 @@ def test_sinusoids_with_empty_array():
 
 
 def test_sinusoids_with_zero_degree():
-    """测试度数为0的情况"""
+    """
+    测试度数为0的情况.
+    """
     dataset = np.array([[1], [2], [3]])
     sinusoid_degree = 0
 
@@ -51,7 +57,9 @@ def test_sinusoids_with_zero_degree():
 
 
 def test_sinusoids_with_2d_input():
-    """测试二维输入数据"""
+    """
+    测试二维输入数据.
+    """
     dataset = np.array([[0, np.pi / 4], [np.pi / 2, np.pi / 3], [np.pi, np.pi / 6]])
     sinusoid_degree = 2
 
@@ -75,7 +83,9 @@ def test_sinusoids_with_2d_input():
 
 
 def test_sinusoids_with_high_degree():
-    """测试高次数正弦特征生成"""
+    """
+    测试高次数正弦特征生成.
+    """
     dataset = np.array([[0.1], [0.5], [1.0]])
     sinusoid_degree = 10
 
@@ -93,7 +103,9 @@ def test_sinusoids_with_high_degree():
 
 
 def test_sinusoids_with_negative_values():
-    """测试负值输入"""
+    """
+    测试负值输入.
+    """
     dataset = np.array([[-1.0], [0], [1.0]])
     sinusoid_degree = 2
 

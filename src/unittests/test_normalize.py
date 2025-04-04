@@ -8,14 +8,18 @@ def test_feature_normalize():
 
 
 def test_normalize_single_sample():
-    """测试单个样本的情况"""
+    """
+    测试单个样本的情况.
+    """
     features = np.array([[1, 2, 3]])
     normalized, mean, std = FeatureNormalizer.normalize(features)
     np.testing.assert_array_equal(normalized, features)  # 单个样本应该保持不变
 
 
 def test_normalize_multiple_samples():
-    """测试多个样本的情况"""
+    """
+    测试多个样本的情况.
+    """
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     normalized, mean, std = FeatureNormalizer.normalize(features)
 
@@ -39,7 +43,9 @@ def test_normalize_multiple_samples():
 
 
 def test_normalize_zero_std():
-    """测试标准差为0的情况"""
+    """
+    测试标准差为0的情况.
+    """
     features = np.array([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
     normalized, mean, std = FeatureNormalizer.normalize(features)
 
@@ -49,7 +55,9 @@ def test_normalize_zero_std():
 
 
 def test_normalize_negative_values():
-    """测试包含负值的情况"""
+    """
+    测试包含负值的情况.
+    """
     features = np.array([[-1, -2, -3], [0, 0, 0], [1, 2, 3]])
     normalized, mean, std = FeatureNormalizer.normalize(features)
 

@@ -7,7 +7,7 @@ class Polynomials:
     @staticmethod
     def generate(dataset, polynomial_degree, normalize_data=False):
         """
-        为数据集生成多项式特征
+        为数据集生成多项式特征.
 
         多项式特征变换方法：x1, x2, x1^2, x2^2, x1*x2, x1*x2^2, 等
         通过这种方式可以使线性模型学习非线性规律

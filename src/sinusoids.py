@@ -5,7 +5,7 @@ class Sinusoids:
     @staticmethod
     def generate(dataset, sinusoid_degree):
         """
-        为数据集生成正弦特征
+        为数据集生成正弦特征.
 
         通过对原始特征应用正弦函数，生成新的特征：sin(x), sin(2x), sin(3x), ...
         这种特征变换可以帮助模型学习周期性规律

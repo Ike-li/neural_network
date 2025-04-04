@@ -6,7 +6,9 @@ from multilayer_perceptron import MultilayerPerceptron
 
 class TestMultilayerPerceptron(unittest.TestCase):
     def setUp(self):
-        """测试前的设置，创建简单的测试数据"""
+        """
+        测试前的设置，创建简单的测试数据.
+        """
         # 创建简单的特征数据，4个样本，3个特征
         self.data = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
         # 创建标签数据，4个样本，分别属于0、1、2、0类
@@ -15,7 +17,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         self.layers = [3, 4, 3]
 
     def test_init(self):
-        """测试初始化方法"""
+        """
+        测试初始化方法.
+        """
         # 测试默认初始化（不归一化数据）
         mlp = MultilayerPerceptron(self.data, self.labels, self.layers)
         self.assertEqual(mlp.data.shape[1], 4)  # 3特征 + 1偏置
@@ -36,7 +40,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         self.assertEqual(mlp_norm.normalize_data, True)
 
     def test_thetas_init(self):
-        """测试参数初始化方法"""
+        """
+        测试参数初始化方法.
+        """
         thetas = MultilayerPerceptron.thetas_init(self.layers)
         self.assertEqual(len(thetas), 2)  # 应该有2个theta矩阵
         self.assertEqual(
@@ -50,7 +56,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         self.assertTrue(np.all(thetas[1] >= 0) and np.all(thetas[1] <= 0.05))
 
     def test_thetas_unroll(self):
-        """测试参数展开方法"""
+        """
+        测试参数展开方法.
+        """
         # 创建已知的测试theta参数
         thetas = {
             0: np.array([[1, 2, 3, 4], [5, 6, 7, 8]]),
@@ -64,7 +72,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         np.testing.assert_array_equal(unrolled, expected)
 
     def test_thetas_roll(self):
-        """测试参数重塑方法"""
+        """
+        测试参数重塑方法.
+        """
         # 创建已知的一维参数
         unrolled = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
         # 定义网络结构
@@ -77,7 +87,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         np.testing.assert_array_equal(thetas[1], np.array([[9, 10, 11], [12, 13, 14]]))
 
     def test_feedforward_propagation(self):
-        """测试前向传播方法"""
+        """
+        测试前向传播方法.
+        """
         # 创建测试数据和参数，确保维度匹配
         # 3个特征，需要添加偏置项，因此创建包含偏置项的数据
         test_data = np.array([[1, 0.1, 0.2, 0.3], [1, 0.4, 0.5, 0.6]])
@@ -109,7 +121,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         np.testing.assert_almost_equal(output, expected_output, decimal=6)
 
     def test_cost_function(self):
-        """测试代价函数方法"""
+        """
+        测试代价函数方法.
+        """
         # 创建包含偏置项的测试数据
         test_data = np.array([[1, 0.1, 0.2, 0.3], [1, 0.4, 0.5, 0.6]])
         test_labels = np.array([[0], [1]])
@@ -127,7 +141,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         self.assertGreater(cost, 0)
 
     def test_back_propagation(self):
-        """测试反向传播方法"""
+        """
+        测试反向传播方法.
+        """
         # 创建包含偏置项的测试数据
         test_data = np.array([[1, 0.1, 0.2, 0.3], [1, 0.4, 0.5, 0.6]])
         test_labels = np.array([[0], [1]])
@@ -147,7 +163,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         self.assertEqual(deltas[1].shape, (2, 3))
 
     def test_gradient_step(self):
-        """测试梯度步骤方法"""
+        """
+        测试梯度步骤方法.
+        """
         # 创建包含偏置项的测试数据
         test_data = np.array([[1, 0.1, 0.2, 0.3], [1, 0.4, 0.5, 0.6]])
         test_labels = np.array([[0], [1]])
@@ -165,7 +183,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         self.assertEqual(gradient.shape, (14,))
 
     def test_gradient_descent(self):
-        """测试梯度下降方法"""
+        """
+        测试梯度下降方法.
+        """
         # 创建包含偏置项的测试数据
         test_data = np.array([[1, 0.1, 0.2, 0.3], [1, 0.4, 0.5, 0.6]])
         test_labels = np.array([[0], [1]])
@@ -186,7 +206,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         self.assertLessEqual(cost_history[-1], cost_history[0])
 
     def test_train(self):
-        """测试训练方法"""
+        """
+        测试训练方法.
+        """
         # 初始化模型
         mlp = MultilayerPerceptron(self.data, self.labels, self.layers)
 
@@ -200,7 +222,9 @@ class TestMultilayerPerceptron(unittest.TestCase):
         self.assertEqual(len(cost_history), 3)
 
     def test_predict(self):
-        """测试预测方法"""
+        """
+        测试预测方法.
+        """
         # 初始化模型
         mlp = MultilayerPerceptron(self.data, self.labels, self.layers)
 

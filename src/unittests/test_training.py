@@ -8,12 +8,16 @@ from training import Training
 
 
 def test_training_exists():
-    """测试Training类是否存在"""
+    """
+    测试Training类是否存在.
+    """
     assert Training
 
 
 def test_prepare_basic():
-    """测试基本的数据准备功能，不使用多项式或正弦特征"""
+    """
+    测试基本的数据准备功能，不使用多项式或正弦特征.
+    """
     # 创建测试数据
     data = np.array([[1, 2], [3, 4]])
 
@@ -30,7 +34,9 @@ def test_prepare_basic():
 
 
 def test_prepare_no_normalize():
-    """测试不使用归一化的数据准备功能"""
+    """
+    测试不使用归一化的数据准备功能.
+    """
     # 创建测试数据
     data = np.array([[1, 2], [3, 4]])
 
@@ -49,7 +55,9 @@ def test_prepare_no_normalize():
 
 
 def test_prepare_with_polynomial():
-    """测试使用多项式特征的数据准备功能"""
+    """
+    测试使用多项式特征的数据准备功能.
+    """
     # 创建测试数据
     data = np.array([[1, 2], [3, 4]])
 
@@ -66,7 +74,9 @@ def test_prepare_with_polynomial():
 
 
 def test_prepare_with_sinusoid():
-    """测试使用正弦特征的数据准备功能"""
+    """
+    测试使用正弦特征的数据准备功能.
+    """
     # 创建测试数据
     data = np.array([[1, 2], [3, 4]])
 
@@ -82,7 +92,9 @@ def test_prepare_with_sinusoid():
 
 
 def test_prepare_with_both_features():
-    """测试同时使用多项式和正弦特征的数据准备功能"""
+    """
+    测试同时使用多项式和正弦特征的数据准备功能.
+    """
     # 创建测试数据
     data = np.array([[1, 2], [3, 4]])
 
@@ -98,7 +110,9 @@ def test_prepare_with_both_features():
 
 
 def test_prepare_empty_data():
-    """测试处理空数据的情况"""
+    """
+    测试处理空数据的情况.
+    """
     # 创建空的测试数据（0个样本，2个特征）
     data = np.empty((0, 2))
 
@@ -112,7 +126,9 @@ def test_prepare_empty_data():
 
 
 def test_prepare_single_feature():
-    """测试单特征数据的处理"""
+    """
+    测试单特征数据的处理.
+    """
     # 创建单特征测试数据
     data = np.array([[1], [2], [3]])
 
@@ -133,7 +149,9 @@ def test_prepare_single_feature():
 def test_integration_with_all_components(
     mock_sinusoids_generate, mock_polynomials_generate, mock_normalize
 ):
-    """测试与所有组件的集成"""
+    """
+    测试与所有组件的集成。
+    """
     # 创建测试数据
     data = np.array([[1, 2], [3, 4]])
 

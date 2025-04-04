@@ -7,7 +7,7 @@ class Sigmoid:
 
     def apply(self):
         """
-        对输入矩阵应用sigmoid激活函数
+        对输入矩阵应用sigmoid激活函数.
 
         Sigmoid函数公式: f(x) = 1 / (1 + e^(-x))
 

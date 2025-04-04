@@ -6,15 +6,22 @@ from training import Training
 
 # 多层感知机类，实现了一个完整的神经网络
 class MultilayerPerceptron:
+    """
+    多层感知机实现类，用于构建和训练神经网络模型。
+
+    该类实现了一个完整的神经网络，包括前向传播、反向传播、梯度下降等核心功能。 支持任意层数的网络结构，可以处理分类问题。
+    """
+
     def __init__(self, data, labels, layers, normalize_data=False):
         """
-        初始化多层感知机
+        初始化多层感知机。
 
-        参数:
-        data - 输入特征数据，形状为 (样本数, 特征数)
-        labels - 标签数据，形状为 (样本数, 1)
-        layers - 神经网络各层的神经元数量，例如 [784, 25, 10] 表示输入层784个神经元，隐藏层25个神经元，输出层10个神经元
-        normalize_data - 是否对输入数据进行归一化处理
+        Args:
+            data: 输入特征数据，形状为 (样本数, 特征数)。
+            labels: 标签数据，形状为 (样本数, 1)。
+            layers: 神经网络各层的神经元数量列表，
+                   例如 [784, 25, 10] 表示输入层784个神经元，隐藏层25个神经元，输出层10个神经元。
+            normalize_data: 是否对输入数据进行归一化处理。默认为 False。
         """
         # 使用prepare_for_training函数预处理数据，返回处理后的数据和其他相关信息
 
@@ -28,13 +35,13 @@ class MultilayerPerceptron:
 
     def predict(self, data):
         """
-        使用训练好的模型进行预测
+        使用训练好的模型进行预测。
 
-        参数:
-        data - 要预测的特征数据，形状为 (样本数, 特征数)
+        Args:
+            data: 要预测的特征数据，形状为 (样本数, 特征数)。
 
-        返回:
-        predictions - 预测结果，形状为 (样本数, 1)，包含每个样本的预测类别（0-9）
+        Returns:
+            numpy.ndarray: 预测结果，形状为 (样本数, 1)，包含每个样本的预测类别（0-9）。
         """
         # 对输入数据进行预处理，保持与训练数据相同的处理方式
         data_processed = Training.prepare(data, normalize_data=self.normalize_data)[0]
@@ -52,15 +59,16 @@ class MultilayerPerceptron:
 
     def train(self, max_iterations=1000, alpha=0.1):
         """
-        训练神经网络模型
+        训练神经网络模型。
 
-        参数:
-        max_iterations - 最大迭代次数，即梯度下降的最大步数
-        alpha - 学习率，控制每次参数更新的步长
+        Args:
+            max_iterations: 最大迭代次数，即梯度下降的最大步数。默认为1000。
+            alpha: 学习率，控制每次参数更新的步长。默认为0.1。
 
-        返回:
-        thetas - 训练后的网络参数
-        cost_history - 训练过程中的代价函数值历史记录
+        Returns:
+            tuple: 包含以下两个元素：
+                - thetas (dict): 训练后的网络参数。
+                - cost_history (list): 训练过程中的代价函数值历史记录。
         """
         # 将theta参数展开成一维数组，便于梯度下降优化
         unrolled_theta = MultilayerPerceptron.thetas_unroll(self.thetas)
@@ -77,22 +85,25 @@ class MultilayerPerceptron:
     @staticmethod
     def thetas_init(layers):
         """
-        初始化神经网络各层的参数矩阵
+        初始化神经网络各层的参数矩阵。
 
-        参数:
-        layers - 神经网络各层的神经元数量列表，例如 [784, 25, 10]
+        Args:
+            layers: 神经网络各层的神经元数量列表，例如 [784, 25, 10]。
 
-        返回:
-        thetas - 字典，包含每层的参数矩阵
+        Returns:
+            dict: 包含每层参数矩阵的字典，键为层索引，值为对应的参数矩阵。
+                 例如对于 [784, 25, 10] 的网络结构:
+                 - 第一层参数矩阵: 25×785 (25个隐藏层神经元，每个连接784个输入+1个偏置)
+                 - 第二层参数矩阵: 10×26 (10个输出层神经元，每个连接25个隐藏层输出+1个偏置)
         """
         num_layers = len(layers)  # 获取网络层数
         thetas = {}  # 创建参数字典
         for layer_index in range(num_layers - 1):
             """
-            会执行两次，得到两组参数矩阵：
-            对于 [784, 25, 10] 的网络结构:
-            第一层参数矩阵: 25×785 (25个隐藏层神经元，每个连接784个输入+1个偏置)
-            第二层参数矩阵: 10×26 (10个输出层神经元，每个连接25个隐藏层输出+1个偏置)
+            会执行两次，得到两组参数矩阵： 对于 [784, 25, 10] 的网络结构:
+
+            第一层参数矩阵: 25×785 (25个隐藏层神经元，每个连接784个输入+1个偏置) 第二层参数矩阵: 10×26
+            (10个输出层神经元，每个连接25个隐藏层输出+1个偏置)
             """
             in_count = layers[layer_index]  # 当前层神经元数量
             out_count = layers[layer_index + 1]  # 下一层神经元数量
@@ -104,13 +115,15 @@ class MultilayerPerceptron:
     @staticmethod
     def thetas_unroll(thetas):
         """
-        将每层的参数矩阵展开成一维数组，便于优化算法处理
+        将每层的参数矩阵展开成一维数组。
 
-        参数:
-        thetas - 字典，包含每层的参数矩阵
+        将神经网络中每层的参数矩阵展开并连接成一个一维数组，便于优化算法处理。
 
-        返回:
-        unrolled_theta - 一维数组，包含所有参数
+        Args:
+            thetas: 包含每层参数矩阵的字典。
+
+        Returns:
+            numpy.ndarray: 包含所有参数的一维数组。
         """
         num_theta_layers = len(thetas)  # 获取网络层数-1（参数矩阵的数量）
         unrolled_theta = np.array([])  # 创建空数组用于存储展开后的参数
@@ -124,19 +137,20 @@ class MultilayerPerceptron:
     @staticmethod
     def gradient_descent(data, labels, unrolled_theta, layers, max_iterations, alpha):
         """
-        使用梯度下降法优化神经网络参数
+        使用梯度下降法优化神经网络参数。
 
-        参数:
-        data - 特征数据
-        labels - 标签数据
-        unrolled_theta - 展开的初始参数
-        layers - 网络结构
-        max_iterations - 最大迭代次数
-        alpha - 学习率
+        Args:
+            data: 特征数据，形状为 (样本数, 特征数)。
+            labels: 标签数据，形状为 (样本数, 1)。
+            unrolled_theta: 展开的初始参数（一维数组）。
+            layers: 网络结构，包含每层神经元数量的列表。
+            max_iterations: 最大迭代次数。
+            alpha: 学习率，控制每次参数更新的步长。
 
-        返回:
-        optimized_theta - 优化后的参数（一维数组）
-        cost_history - 训练过程中的代价函数值历史记录
+        Returns:
+            tuple: 包含以下两个元素：
+                - optimized_theta (numpy.ndarray): 优化后的参数（一维数组）。
+                - cost_history (list): 训练过程中的代价函数值历史记录。
         """
         optimized_theta = unrolled_theta  # 初始化优化参数为输入的初始参数
         cost_history = []  # 创建空列表用于记录代价函数值
@@ -164,16 +178,16 @@ class MultilayerPerceptron:
     @staticmethod
     def gradient_step(data, labels, optimized_theta, layers):
         """
-        计算一步梯度下降的梯度
+        计算一步梯度下降的梯度。
 
-        参数:
-        data - 特征数据
-        labels - 标签数据
-        optimized_theta - 当前的参数（一维数组）
-        layers - 网络结构
+        Args:
+            data: 特征数据，形状为 (样本数, 特征数)。
+            labels: 标签数据，形状为 (样本数, 1)。
+            optimized_theta: 当前的参数（一维数组）。
+            layers: 网络结构，包含每层神经元数量的列表。
 
-        返回:
-        thetas_unrolled_gradients - 展开的梯度（一维数组）
+        Returns:
+            numpy.ndarray: 展开的梯度（一维数组），表示每个参数的梯度值。
         """
         # 将一维参数转换回矩阵形式
         theta = MultilayerPerceptron.thetas_roll(optimized_theta, layers)
@@ -190,16 +204,18 @@ class MultilayerPerceptron:
     @staticmethod
     def back_propagation(data, labels, thetas, layers):
         """
-        反向传播算法，计算神经网络参数的梯度
+        反向传播算法，计算神经网络参数的梯度。
 
-        参数:
-        data - 特征数据，形状为 (样本数, 特征数)
-        labels - 标签数据，形状为 (样本数, 1)
-        thetas - 当前的参数字典
-        layers - 网络结构
+        使用反向传播算法计算损失函数对每个参数的梯度，用于更新网络参数。
 
-        返回:
-        deltas - 各层参数的梯度字典
+        Args:
+            data: 特征数据，形状为 (样本数, 特征数)。
+            labels: 标签数据，形状为 (样本数, 1)。
+            thetas: 当前的参数字典，每个键对应一层的参数矩阵。
+            layers: 网络结构，包含每层神经元数量的列表。
+
+        Returns:
+            dict: 包含每层参数梯度的字典，结构与输入的 thetas 相同。
         """
         num_layers = len(layers)  # 网络层数
         (num_examples, num_features) = data.shape  # 样本数和特征数
@@ -293,16 +309,18 @@ class MultilayerPerceptron:
     @staticmethod
     def cost_function(data, labels, thetas, layers):
         """
-        计算神经网络的代价函数值（交叉熵损失）
+        计算神经网络的代价函数值。
 
-        参数:
-        data - 特征数据
-        labels - 标签数据
-        thetas - 当前的参数字典
-        layers - 网络结构
+        使用交叉熵损失函数计算当前参数下的代价值，用于评估模型性能和指导参数优化。
 
-        返回:
-        cost - 代价函数值
+        Args:
+            data: 特征数据，形状为 (样本数, 特征数)。
+            labels: 标签数据，形状为 (样本数, 1)。
+            thetas: 当前的参数字典，每个键对应一层的参数矩阵。
+            layers: 网络结构，包含每层神经元数量的列表。
+
+        Returns:
+            float: 代价函数值，表示当前模型预测的误差大小。
         """
         # num_layers = len(layers)  # 网络层数
         num_examples = data.shape[0]  # 样本数
@@ -330,15 +348,17 @@ class MultilayerPerceptron:
     @staticmethod
     def feedforward_propagation(data, thetas, layers):
         """
-        前向传播算法，计算神经网络的输出
+        执行前向传播计算。
 
-        参数:
-        data - 特征数据，形状为 (样本数, 特征数)
-        thetas - 参数字典
-        layers - 网络结构
+        将输入数据通过神经网络的各层进行前向传播，计算每层的激活值。
 
-        返回:
-        输出层的激活值，形状为 (样本数, 输出类别数)
+        Args:
+            data: 输入特征数据，形状为 (样本数, 特征数)。
+            thetas: 网络参数字典，每个键对应一层的参数矩阵。
+            layers: 网络结构，包含每层神经元数量的列表。
+
+        Returns:
+            numpy.ndarray: 最后一层的输出值，形状为 (样本数, 输出层神经元数)。
         """
         num_layers = len(layers)  # 网络层数
         num_examples = data.shape[0]  # 样本数
@@ -365,14 +385,16 @@ class MultilayerPerceptron:
     @staticmethod
     def thetas_roll(unrolled_thetas, layers):
         """
-        将一维参数数组重新转换为参数矩阵字典
+        将一维参数数组重新转换为参数矩阵字典。
 
-        参数:
-        unrolled_thetas - 展开的一维参数数组
-        layers - 网络结构
+        将梯度下降优化得到的一维参数数组重新转换为每层的参数矩阵形式。
 
-        返回:
-        thetas - 参数矩阵字典
+        Args:
+            unrolled_thetas: 一维参数数组。
+            layers: 网络结构，包含每层神经元数量的列表。
+
+        Returns:
+            dict: 包含每层参数矩阵的字典，键为层索引，值为对应的参数矩阵。
         """
         num_layers = len(layers)  # 网络层数
         thetas = {}  # 创建参数字典

@@ -3,7 +3,7 @@ import numpy as np
 
 class FeatureNormalizer:
     """
-    特征数据标准化处理类
+    特征数据标准化处理类.
 
     采用z-score标准化方法：(x - μ) / σ
     其中 μ 是均值，σ 是标准差
@@ -18,7 +18,7 @@ class FeatureNormalizer:
     @staticmethod
     def normalize(features):
         """
-        对特征数据进行标准化处理
+        对特征数据进行标准化处理.
 
         参数:
         features - 输入特征数据，形状为 (样本数, 特征数)

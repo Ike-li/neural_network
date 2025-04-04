@@ -4,12 +4,16 @@ from polynomials import Polynomials
 
 
 def test_polynomials_exists():
-    """测试Polynomials类是否存在"""
+    """
+    测试Polynomials类是否存在.
+    """
     assert Polynomials
 
 
 def test_generate_polynomial_degree_1():
-    """测试生成一次多项式特征"""
+    """
+    测试生成一次多项式特征.
+    """
     # 创建测试数据
     dataset = np.array([[1, 2], [3, 4]])
 
@@ -22,7 +26,9 @@ def test_generate_polynomial_degree_1():
 
 
 def test_generate_polynomial_degree_2():
-    """测试生成二次多项式特征"""
+    """
+    测试生成二次多项式特征.
+    """
     # 创建测试数据
     dataset = np.array([[1, 2], [3, 4]])
 
@@ -35,7 +41,9 @@ def test_generate_polynomial_degree_2():
 
 
 def test_generate_polynomial_degree_3():
-    """测试生成三次多项式特征"""
+    """
+    测试生成三次多项式特征.
+    """
     # 创建测试数据
     dataset = np.array([[1, 2], [3, 4]])
 
@@ -50,7 +58,9 @@ def test_generate_polynomial_degree_3():
 
 
 def test_normalize_polynomial_features():
-    """测试归一化多项式特征"""
+    """
+    测试归一化多项式特征.
+    """
     # 创建测试数据
     dataset = np.array([[1, 2], [3, 4], [5, 6]])
 
@@ -68,7 +78,9 @@ def test_normalize_polynomial_features():
 
 
 def test_uneven_dataset():
-    """测试特征数不均匀的数据集"""
+    """
+    测试特征数不均匀的数据集.
+    """
     # 创建测试数据，特征数不均匀
     dataset = np.array([[1, 2, 3], [4, 5, 6]])
 
@@ -77,12 +89,15 @@ def test_uneven_dataset():
 
     # 验证结果的形状
     # 特征被分成两半，取较小的一半，所以每半有1个特征
-    # 二次多项式特征数量应该是3：x1, x2, x1^2, x1*x2, x2^2，但由于只使用了第一个特征，所以只有3个
+    # 二次多项式特征数量应该是3：x1, x2, x1^2, x1*x2, x2^2，
+    # 但由于只使用了第一个特征，所以只有3个
     assert result.shape == (2, 5)
 
 
 def test_empty_dataset_error():
-    """测试空数据集的情况"""
+    """
+    测试空数据集的情况.
+    """
     # 创建空数据集
     empty_dataset = np.array([[], []])
 
@@ -92,7 +107,9 @@ def test_empty_dataset_error():
 
 
 def test_single_feature_dataset():
-    """测试单特征数据集"""
+    """
+    测试单特征数据集.
+    """
     # 创建单特征数据集
     dataset = np.array([[1, 1], [2, 2], [3, 3]])
 
@@ -109,7 +126,9 @@ def test_single_feature_dataset():
 
 
 def test_first_part_empty_features():
-    """测试第一部分特征为空的情况"""
+    """
+    测试第一部分特征为空的情况.
+    """
     # 创建第一部分特征为空的数据集
     dataset = np.array([[1, 2], [3, 4]])
     # 创建一个特殊的数据集，第一部分为空
@@ -132,7 +151,9 @@ def test_first_part_empty_features():
 
 
 def test_second_part_empty_features():
-    """测试第二部分特征为空的情况"""
+    """
+    测试第二部分特征为空的情况.
+    """
     # 创建第二部分特征为空的数据集
     dataset = np.array([[1, 2], [3, 4]])
     empty_part = np.zeros((2, 0))
@@ -151,7 +172,9 @@ def test_second_part_empty_features():
 
 
 def test_unequal_features():
-    """测试特征数不均衡的情况，覆盖num_features计算"""
+    """
+    测试特征数不均衡的情况，覆盖num_features计算.
+    """
     # 创建特征数不均衡的数据集，第一部分特征数少于第二部分
     dataset_1 = np.array([[1], [2]])
     dataset_2 = np.array([[3, 4], [5, 6]])
@@ -170,7 +193,9 @@ def test_unequal_features():
 
 
 def test_unequal_features_second_less():
-    """测试第二部分特征数少于第一部分的情况"""
+    """
+    测试第二部分特征数少于第一部分的情况.
+    """
     # 创建特征数不均匀的数据集，第二部分特征数少
     dataset_1 = np.array([[1, 2], [3, 4]])
     dataset_2 = np.array([[5], [6]])
@@ -186,7 +211,9 @@ def test_unequal_features_second_less():
 
 
 def test_both_parts_no_features():
-    """测试两部分都没有特征的情况"""
+    """
+    测试两部分都没有特征的情况.
+    """
     # 创建两部分都没有特征的数据集
     empty_part1 = np.zeros((2, 0))
     empty_part2 = np.zeros((2, 0))
@@ -200,7 +227,9 @@ def test_both_parts_no_features():
 
 
 def test_first_part_no_features():
-    """测试第一部分没有特征的情况，覆盖num_features_1 == 0条件分支"""
+    """
+    测试第一部分没有特征的情况，覆盖num_features_1 == 0条件分支.
+    """
     # 创建测试数据
     dataset = np.array([[1, 2], [3, 4]])
 
@@ -231,7 +260,9 @@ def test_first_part_no_features():
 
 
 def test_second_part_no_features():
-    """测试第二部分没有特征的情况，覆盖num_features_2 == 0条件分支"""
+    """
+    测试第二部分没有特征的情况，覆盖num_features_2 == 0条件分支.
+    """
     # 创建测试数据
     dataset = np.array([[1, 2], [3, 4]])
 
@@ -263,7 +294,9 @@ def test_second_part_no_features():
 
 # 处理特殊情况：如果其中一部分没有特征，则使用另一部分代替
 def test_one_part_empty():
-    """处理特殊情况：如果其中一部分没有特征，则使用另一部分代替"""
+    """
+    处理特殊情况：如果其中一部分没有特征，则使用另一部分代替.
+    """
     # 创建第一部分特征为空的数据集
     dataset_1 = np.array([[1, 2], [3, 4]])
     empty_part = np.zeros((2, 2))
@@ -279,7 +312,9 @@ def test_one_part_empty():
 
 
 def test_normalize_data_with_real_normalizer():
-    """测试归一化特性，包括直接调用FeatureNormalizer"""
+    """
+    测试归一化特性，包括直接调用FeatureNormalizer.
+    """
     # 创建测试数据
     dataset = np.array([[1, 2], [3, 4], [5, 6]])
 
