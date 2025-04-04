@@ -9,7 +9,7 @@ class MultilayerPerceptron:
     """
     多层感知机实现类，用于构建和训练神经网络模型。
 
-    该类实现了一个完整的神经网络，包括前向传播、反向传播、梯度下降等核心功能。 支持任意层数的网络结构，可以处理分类问题。
+    该类实现了一个完整的神经网络，包括前向传播、反向传播、梯度下降等核心功能。支持任意层数的网络结构，可以处理分类问题。
     """
 
     def __init__(self, data, labels, layers, normalize_data=False):
@@ -24,7 +24,6 @@ class MultilayerPerceptron:
             normalize_data: 是否对输入数据进行归一化处理。默认为 False。
         """
         # 使用prepare_for_training函数预处理数据，返回处理后的数据和其他相关信息
-
         data_processed = Training.prepare(data, normalize_data=normalize_data)[0]
         self.data = data_processed  # 存储处理后的特征数据
         self.labels = labels  # 存储标签数据
@@ -99,12 +98,6 @@ class MultilayerPerceptron:
         num_layers = len(layers)  # 获取网络层数
         thetas = {}  # 创建参数字典
         for layer_index in range(num_layers - 1):
-            """
-            会执行两次，得到两组参数矩阵： 对于 [784, 25, 10] 的网络结构:
-
-            第一层参数矩阵: 25×785 (25个隐藏层神经元，每个连接784个输入+1个偏置) 第二层参数矩阵: 10×26
-            (10个输出层神经元，每个连接25个隐藏层输出+1个偏置)
-            """
             in_count = layers[layer_index]  # 当前层神经元数量
             out_count = layers[layer_index + 1]  # 下一层神经元数量
             # 初始化参数矩阵，考虑偏置项，所以列数+1
