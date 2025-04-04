@@ -1,15 +1,23 @@
 repos:
   # Ruff 代码检查和格式化
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.2  # 使用最新版本
+    rev: v0.11.3  # 使用最新版本
     hooks:
       - id: ruff-format       # 运行 Ruff 格式化，自动调整代码格式
       - id: ruff             # 运行 Ruff 检查并自动修复代码问题
-        args: [--fix]        # 自动修复可以修复的问题
+        args: [--fix, --select=E,F,W]  # 自动修复可以修复的问题，并明确选择PEP8错误(E)、PyFlakes错误(F)和警告(W)
+
+  # Flake8 PEP8规范检查
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.2.0
+    hooks:
+      - id: flake8
+        args: ['--max-line-length=88', '--extend-ignore=E203']  # 配置行长度和忽略特定规则
+        additional_dependencies: [flake8-docstrings]  # 添加文档字符串检查
 
   # Commitizen 提交信息规范
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
+    rev: v4.4.1
     hooks:
       - id: commitizen
         stages: [commit-msg]  # 在提交信息阶段检查，确保提交信息符合规范
