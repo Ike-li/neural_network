@@ -7,7 +7,7 @@ repos:
       - id: ruff             # 运行 Ruff 检查并自动修复代码问题
         args: [
           --fix,
-          --select=E,F,W,D,   # 添加 D 规则以检查文档字符串
+          --select=E,F,W,D,UP,   # 添加 D 规则以检查文档字符串，添加 UP 规则以优化 Python 代码
           --ignore=D100,D101,D102,D103,D104,D105,D107,D200,D202,D400,DCO010,DCO020,DCO030,DCO050,  # 忽略文档字符串规则
           --fix-only,  # 只修复问题，不报告
         ]
@@ -55,17 +55,3 @@ repos:
         types: [python]
         pass_filenames: false
         always_run: true
-
-      # 文档字符串格式化
-      - id: docformatter
-        name: docformatter
-        entry: docformatter
-        language: system
-        types: [python]
-        args: [
-          --in-place,
-          --wrap-summaries=88,
-          --wrap-descriptions=88,
-          --pre-summary-newline,
-          --make-summary-multi-line,
-        ]
