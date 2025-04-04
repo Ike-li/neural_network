@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from src.polynomials import Polynomials
+from polynomials import Polynomials
 
 
 def test_polynomials_exists():

@@ -1,4 +1,4 @@
-from src.normalize import FeatureNormalizer
+from normalize import FeatureNormalizer
 import numpy as np
 
 

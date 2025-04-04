@@ -1,7 +1,7 @@
 import numpy as np  # 导入NumPy库，用于科学计算和数组操作
 
-from src.sigmoid import Sigmoid
-from src.training import Training
+from sigmoid import Sigmoid
+from training import Training
 
 
 # 多层感知机类，实现了一个完整的神经网络

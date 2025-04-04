@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from src.multilayer_perceptron import MultilayerPerceptron
+from multilayer_perceptron import MultilayerPerceptron
 
 
 class TestMultilayerPerceptron(unittest.TestCase):

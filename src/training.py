@@ -1,8 +1,8 @@
 import numpy as np
 
-from src.normalize import FeatureNormalizer
-from src.polynomials import Polynomials
-from src.sinusoids import Sinusoids
+from normalize import FeatureNormalizer
+from polynomials import Polynomials
+from sinusoids import Sinusoids
 
 
 class Training:

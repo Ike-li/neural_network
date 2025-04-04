@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.normalize import FeatureNormalizer
+from normalize import FeatureNormalizer
 
 
 class Polynomials:

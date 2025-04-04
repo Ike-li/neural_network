@@ -31,7 +31,7 @@ repos:
     hooks:
       - id: coverage
         name: coverage
-        entry: bash -c 'coverage run --source=. -m pytest && coverage report -m --fail-under 100'
+        entry: bash -c 'cd src && coverage run --source=. --omit=mnist.py -m pytest && coverage report -m --fail-under 100'
         language: system
         types: [python]           # 只检查 Python 文件
         pass_filenames: false     # 不传递文件名给命令

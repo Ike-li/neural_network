@@ -9,7 +9,7 @@ import math  # 导入数学库，提供数学函数
 from multilayer_perceptron import MultilayerPerceptron
 
 # 使用pandas读取CSV文件，CSV包含手写数字图像数据
-data = pd.read_csv("src/data/mnist-demo.csv")  # 读取CSV文件，CSV包含手写数字图像数据
+data = pd.read_csv("data/mnist-demo.csv")  # 读取CSV文件，CSV包含手写数字图像数据
 
 # 以下代码用于显示MNIST数据集中的一些图像样本
 numbers_to_display = 25  # 要显示的图像数量

@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.sinusoids import Sinusoids
+from sinusoids import Sinusoids
 
 
 def test_sinusoids():

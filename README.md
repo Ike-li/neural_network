@@ -59,7 +59,7 @@ poetry install
 
 ```python
 import numpy as np
-from src.multilayer_perceptron import MultilayerPerceptron
+from multilayer_perceptron import MultilayerPerceptron
 
 # 准备数据
 X = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
@@ -82,9 +82,9 @@ predictions = mlp.predict(X)
 
 ```python
 import numpy as np
-from src.normalize import FeatureNormalizer
-from src.polynomials import Polynomials
-from src.sinusoids import Sinusoids
+from normalize import FeatureNormalizer
+from polynomials import Polynomials
+from sinusoids import Sinusoids
 
 # 准备数据
 data = np.array([[1, 2], [3, 4], [5, 6]])
