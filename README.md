@@ -25,9 +25,16 @@ src/
 ├── sinusoids.py                # 正弦特征变换工具
 ├── training.py                 # 训练相关工具
 ├── mnist.py                    # MNIST数据集演示脚本
+├── pyproject.toml              # 项目配置文件
+├── poetry.lock                 # 依赖锁定文件
 ├── data/                       # 数据集
 │   ├── mnist-demo.csv          # MNIST数据集样本
-│   └── fashion-mnist-demo.csv  # Fashion-MNIST数据集样本
+│   ├── fashion-mnist-demo.csv  # Fashion-MNIST数据集样本
+│   ├── iris.csv                # 鸢尾花数据集
+│   ├── microchips-tests.csv    # 微芯片测试数据
+│   ├── non-linear-regression-x-y.csv   # 非线性回归示例数据
+│   ├── server-operational-params.csv   # 服务器操作参数数据
+│   └── world-happiness-report-2017.csv # 世界幸福报告2017数据
 └── unittests/                  # 单元测试
     ├── __init__.py
     ├── test_multilayer_perceptron.py
@@ -35,7 +42,8 @@ src/
     ├── test_polynomials.py
     ├── test_sigmoid.py
     ├── test_sinusoids.py
-    └── test_training.py
+    ├── test_training.py
+    └── test_mnist.py           # MNIST测试
 ```
 
 ## 安装
